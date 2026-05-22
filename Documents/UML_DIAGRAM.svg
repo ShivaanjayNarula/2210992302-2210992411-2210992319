@@ -1,0 +1,307 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1320" viewBox="0 0 1800 1320">
+  <defs>
+    <style>
+      .page { fill: #f7f9fb; }
+      .title { font: 700 34px Arial, sans-serif; fill: #172033; }
+      .section { font: 700 24px Arial, sans-serif; fill: #24324a; }
+      .box { fill: #ffffff; stroke: #334155; stroke-width: 2; rx: 8; }
+      .head { fill: #e8f1ff; stroke: #334155; stroke-width: 2; }
+      .firmHead { fill: #eef8ea; stroke: #334155; stroke-width: 2; }
+      .stateHead { fill: #fff3dd; stroke: #334155; stroke-width: 2; }
+      .className { font: 700 17px Arial, sans-serif; fill: #172033; }
+      .text { font: 14px Arial, sans-serif; fill: #172033; }
+      .small { font: 13px Arial, sans-serif; fill: #475569; }
+      .line { stroke: #475569; stroke-width: 2; fill: none; }
+      .dash { stroke: #64748b; stroke-width: 2; stroke-dasharray: 7 5; fill: none; }
+      .note { fill: #ffffff; stroke: #94a3b8; stroke-width: 1.5; rx: 8; }
+      .state { fill: #ffffff; stroke: #92400e; stroke-width: 2; rx: 20; }
+      .stateText { font: 700 15px Arial, sans-serif; fill: #172033; }
+      .label { font: 12px Arial, sans-serif; fill: #475569; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#475569"/>
+    </marker>
+    <marker id="diamond" markerWidth="14" markerHeight="14" refX="2" refY="7" orient="auto" markerUnits="strokeWidth">
+      <path d="M2,7 L7,2 L12,7 L7,12 z" fill="#ffffff" stroke="#475569" stroke-width="1.5"/>
+    </marker>
+  </defs>
+
+  <rect class="page" x="0" y="0" width="1800" height="1320"/>
+  <text class="title" x="50" y="58">UML Diagram - Autonomous Coral Restoration Codebase</text>
+
+  <text class="section" x="50" y="108">Simulator Class Diagram</text>
+
+  <!-- Simulator classes -->
+  <g transform="translate(50 130)">
+    <rect class="box" x="0" y="0" width="330" height="232"/>
+    <rect class="head" x="0" y="0" width="330" height="38"/>
+    <text class="className" x="165" y="25" text-anchor="middle">CoralRestorationSystem</text>
+    <text class="text" x="16" y="64">+ cfg: SystemConfig</text>
+    <text class="text" x="16" y="86">+ camera: EventCamera</text>
+    <text class="text" x="16" y="108">+ imu: DepthIMU</text>
+    <text class="text" x="16" y="130">+ snn: SNNProcessor</text>
+    <text class="text" x="16" y="152">+ decision: DecisionLogic</text>
+    <text class="text" x="16" y="174">+ deployer: PodDeploymentSystem</text>
+    <text class="text" x="16" y="196">+ log: MissionLog</text>
+    <line class="line" x1="0" y1="206" x2="330" y2="206"/>
+    <text class="text" x="16" y="224">+ tick(ts_ms): void</text>
+  </g>
+
+  <g transform="translate(450 130)">
+    <rect class="box" x="0" y="0" width="270" height="214"/>
+    <rect class="head" x="0" y="0" width="270" height="38"/>
+    <text class="className" x="135" y="25" text-anchor="middle">SystemConfig</text>
+    <text class="text" x="14" y="64">+ confidence_threshold</text>
+    <text class="text" x="14" y="86">+ pods_per_deployment</text>
+    <text class="text" x="14" y="108">+ grid_size</text>
+    <text class="text" x="14" y="130">+ max_events_per_tick</text>
+    <text class="text" x="14" y="152">+ treated_radius_m</text>
+    <text class="text" x="14" y="174">+ depth and tilt limits</text>
+    <text class="text" x="14" y="196">+ rng_seed</text>
+  </g>
+
+  <g transform="translate(780 130)">
+    <rect class="box" x="0" y="0" width="250" height="126"/>
+    <rect class="head" x="0" y="0" width="250" height="38"/>
+    <text class="className" x="125" y="25" text-anchor="middle">EventCamera</text>
+    <text class="text" x="14" y="64">+ width: int</text>
+    <text class="text" x="14" y="86">+ height: int</text>
+    <line class="line" x1="0" y1="96" x2="250" y2="96"/>
+    <text class="text" x="14" y="116">+ read_events(): List&lt;Event&gt;</text>
+  </g>
+
+  <g transform="translate(780 286)">
+    <rect class="box" x="0" y="0" width="250" height="92"/>
+    <rect class="head" x="0" y="0" width="250" height="38"/>
+    <text class="className" x="125" y="25" text-anchor="middle">DepthIMU</text>
+    <text class="text" x="14" y="66">+ read_pose(): Pose</text>
+  </g>
+
+  <g transform="translate(450 390)">
+    <rect class="box" x="0" y="0" width="300" height="146"/>
+    <rect class="head" x="0" y="0" width="300" height="38"/>
+    <text class="className" x="150" y="25" text-anchor="middle">DecisionLogic</text>
+    <text class="text" x="14" y="64">+ cfg: SystemConfig</text>
+    <text class="text" x="14" y="86">+ memory: TreatedLocationMemory</text>
+    <line class="line" x1="0" y1="100" x2="300" y2="100"/>
+    <text class="text" x="14" y="122">+ is_safe(pose): bool</text>
+    <text class="text" x="14" y="140">+ should_deploy(cls, pose): bool</text>
+  </g>
+
+  <g transform="translate(800 430)">
+    <rect class="box" x="0" y="0" width="300" height="116"/>
+    <rect class="head" x="0" y="0" width="300" height="38"/>
+    <text class="className" x="150" y="25" text-anchor="middle">TreatedLocationMemory</text>
+    <text class="text" x="14" y="64">+ treated: List&lt;Tuple&gt;</text>
+    <line class="line" x1="0" y1="76" x2="300" y2="76"/>
+    <text class="text" x="14" y="98">+ is_treated()</text>
+    <text class="text" x="160" y="98">+ mark_treated()</text>
+  </g>
+
+  <g transform="translate(50 410)">
+    <rect class="box" x="0" y="0" width="320" height="146"/>
+    <rect class="head" x="0" y="0" width="320" height="38"/>
+    <text class="className" x="160" y="25" text-anchor="middle">PodDeploymentSystem</text>
+    <text class="text" x="14" y="64">+ gantry: Gantry</text>
+    <text class="text" x="14" y="86">+ jam_sensor: JamSensor</text>
+    <text class="text" x="14" y="108">+ counter: PodCounter</text>
+    <line class="line" x1="0" y1="118" x2="320" y2="118"/>
+    <text class="text" x="14" y="138">+ deploy_pods(), select_target()</text>
+  </g>
+
+  <g transform="translate(50 610)">
+    <rect class="box" x="0" y="0" width="210" height="116"/>
+    <rect class="head" x="0" y="0" width="210" height="38"/>
+    <text class="className" x="105" y="25" text-anchor="middle">Gantry</text>
+    <text class="text" x="14" y="64">+ grid_size</text>
+    <text class="text" x="14" y="86">+ x_idx, y_idx</text>
+    <text class="text" x="14" y="108">+ index_to()</text>
+  </g>
+
+  <g transform="translate(300 610)">
+    <rect class="box" x="0" y="0" width="210" height="86"/>
+    <rect class="head" x="0" y="0" width="210" height="38"/>
+    <text class="className" x="105" y="25" text-anchor="middle">JamSensor</text>
+    <text class="text" x="14" y="64">+ is_jammed(): bool</text>
+  </g>
+
+  <g transform="translate(550 610)">
+    <rect class="box" x="0" y="0" width="230" height="86"/>
+    <rect class="head" x="0" y="0" width="230" height="38"/>
+    <text class="className" x="115" y="25" text-anchor="middle">PodCounter</text>
+    <text class="text" x="14" y="64">+ count_released(): int</text>
+  </g>
+
+  <g transform="translate(1140 130)">
+    <rect class="box" x="0" y="0" width="260" height="116"/>
+    <rect class="head" x="0" y="0" width="260" height="38"/>
+    <text class="className" x="130" y="25" text-anchor="middle">SNNProcessor</text>
+    <text class="text" x="14" y="64">+ classify(events)</text>
+    <text class="text" x="14" y="86">  returns Classification</text>
+  </g>
+
+  <g transform="translate(1140 300)">
+    <rect class="box" x="0" y="0" width="260" height="126"/>
+    <rect class="head" x="0" y="0" width="260" height="38"/>
+    <text class="className" x="130" y="25" text-anchor="middle">MissionLog</text>
+    <text class="text" x="14" y="64">+ records: List&lt;Dict&gt;</text>
+    <line class="line" x1="0" y1="76" x2="260" y2="76"/>
+    <text class="text" x="14" y="98">+ add(record)</text>
+    <text class="text" x="14" y="118">+ summary(): Dict</text>
+  </g>
+
+  <g transform="translate(1140 480)">
+    <rect class="box" x="0" y="0" width="260" height="138"/>
+    <rect class="head" x="0" y="0" width="260" height="38"/>
+    <text class="className" x="130" y="25" text-anchor="middle">Data Types</text>
+    <text class="text" x="14" y="64">Event: x, y, polarity, ts_ms</text>
+    <text class="text" x="14" y="86">Pose: x, y, depth, tilt</text>
+    <text class="text" x="14" y="108">Classification: label, confidence</text>
+    <text class="text" x="14" y="130">CoralClass enum: health states</text>
+  </g>
+
+  <g transform="translate(1450 130)">
+    <rect class="box" x="0" y="0" width="260" height="116"/>
+    <rect class="head" x="0" y="0" width="260" height="38"/>
+    <text class="className" x="130" y="25" text-anchor="middle">Optional Spawn Sensors</text>
+    <text class="text" x="14" y="64">ParticleSensor.read_turbidity()</text>
+    <text class="text" x="14" y="90">MacroCamera.detect_spawning()</text>
+  </g>
+
+  <!-- Simulator relationships -->
+  <path class="line" marker-start="url(#diamond)" d="M380 210 C410 210 420 210 450 210"/>
+  <path class="line" marker-start="url(#diamond)" d="M380 238 C540 238 620 190 780 190"/>
+  <path class="line" marker-start="url(#diamond)" d="M380 265 C560 265 620 332 780 332"/>
+  <path class="line" marker-start="url(#diamond)" d="M380 180 C700 92 930 92 1140 188"/>
+  <path class="line" marker-start="url(#diamond)" d="M210 362 L210 410"/>
+  <path class="line" marker-start="url(#diamond)" d="M380 278 C420 330 440 380 450 450"/>
+  <path class="line" marker-start="url(#diamond)" d="M380 300 C730 270 920 280 1140 360"/>
+  <path class="line" marker-start="url(#diamond)" d="M380 160 C850 60 1170 65 1450 175"/>
+
+  <path class="line" marker-start="url(#diamond)" d="M210 556 L155 610"/>
+  <path class="line" marker-start="url(#diamond)" d="M270 556 C300 580 340 590 405 610"/>
+  <path class="line" marker-start="url(#diamond)" d="M330 556 C410 590 510 595 665 610"/>
+  <path class="line" marker-start="url(#diamond)" d="M750 475 L800 488"/>
+  <path class="dash" marker-end="url(#arrow)" d="M905 256 L1140 535"/>
+  <path class="dash" marker-end="url(#arrow)" d="M905 378 L1140 552"/>
+  <path class="dash" marker-end="url(#arrow)" d="M1270 246 L1270 480"/>
+  <path class="dash" marker-end="url(#arrow)" d="M750 445 C920 420 1010 458 1140 540"/>
+
+  <text class="label" x="392" y="203">owns</text>
+  <text class="label" x="395" y="420">uses</text>
+  <text class="label" x="790" y="465">remembers</text>
+  <text class="label" x="1025" y="505">returns / consumes</text>
+
+  <!-- Divider -->
+  <line x1="50" y1="760" x2="1750" y2="760" stroke="#cbd5e1" stroke-width="2"/>
+
+  <text class="section" x="50" y="812">Firmware UML: Class Relationships and State Machine</text>
+
+  <!-- Firmware class diagram -->
+  <g transform="translate(50 835)">
+    <rect class="box" x="0" y="0" width="300" height="154"/>
+    <rect class="firmHead" x="0" y="0" width="300" height="38"/>
+    <text class="className" x="150" y="25" text-anchor="middle">StateMachine</text>
+    <text class="text" x="14" y="64">+ states: SCAN, DETECT, DEPLOY</text>
+    <text class="text" x="14" y="86">+ states: LOG, FAILSAFE</text>
+    <line class="line" x1="0" y1="100" x2="300" y2="100"/>
+    <text class="text" x="14" y="124">+ tick(dt): void</text>
+  </g>
+
+  <g transform="translate(430 835)">
+    <rect class="box" x="0" y="0" width="250" height="126"/>
+    <rect class="firmHead" x="0" y="0" width="250" height="38"/>
+    <text class="className" x="125" y="25" text-anchor="middle">VisionModule</text>
+    <text class="text" x="14" y="64">+ cam: EventCameraHAL</text>
+    <text class="text" x="14" y="86">+ snn: SNNModel</text>
+    <text class="text" x="14" y="112">+ classify()</text>
+  </g>
+
+  <g transform="translate(430 1005)">
+    <rect class="box" x="0" y="0" width="250" height="106"/>
+    <rect class="firmHead" x="0" y="0" width="250" height="38"/>
+    <text class="className" x="125" y="25" text-anchor="middle">NavigationModule</text>
+    <text class="text" x="14" y="64">+ imu, depth, thrusters</text>
+    <text class="text" x="14" y="88">+ hold_depth()</text>
+  </g>
+
+  <g transform="translate(740 835)">
+    <rect class="box" x="0" y="0" width="270" height="126"/>
+    <rect class="firmHead" x="0" y="0" width="270" height="38"/>
+    <text class="className" x="135" y="25" text-anchor="middle">RestorationLogic</text>
+    <text class="text" x="14" y="64">+ threshold, depth limits</text>
+    <text class="text" x="14" y="86">+ treated locations</text>
+    <text class="text" x="14" y="112">+ should_deploy()</text>
+  </g>
+
+  <g transform="translate(740 1005)">
+    <rect class="box" x="0" y="0" width="270" height="106"/>
+    <rect class="firmHead" x="0" y="0" width="270" height="38"/>
+    <text class="className" x="135" y="25" text-anchor="middle">Deployment Control</text>
+    <text class="text" x="14" y="64">GantryControl.index_to()</text>
+    <text class="text" x="14" y="88">PodRelease.release()</text>
+  </g>
+
+  <g transform="translate(1080 835)">
+    <rect class="box" x="0" y="0" width="250" height="126"/>
+    <rect class="firmHead" x="0" y="0" width="250" height="38"/>
+    <text class="className" x="125" y="25" text-anchor="middle">Telemetry</text>
+    <text class="text" x="14" y="64">+ flash: FlashLogger</text>
+    <text class="text" x="14" y="86">+ modem: ModemHAL</text>
+    <text class="text" x="14" y="112">+ log(), transmit_latest()</text>
+  </g>
+
+  <g transform="translate(1080 1005)">
+    <rect class="box" x="0" y="0" width="250" height="106"/>
+    <rect class="firmHead" x="0" y="0" width="250" height="38"/>
+    <text class="className" x="125" y="25" text-anchor="middle">HAL Components</text>
+    <text class="text" x="14" y="64">SPI/I2C/ADC/PWM/UART</text>
+    <text class="text" x="14" y="88">Pins, steppers, servo, modem</text>
+  </g>
+
+  <path class="line" marker-start="url(#diamond)" d="M350 895 L430 895"/>
+  <path class="line" marker-start="url(#diamond)" d="M350 930 C385 980 395 1025 430 1055"/>
+  <path class="line" marker-start="url(#diamond)" d="M350 910 C500 775 660 780 740 895"/>
+  <path class="line" marker-start="url(#diamond)" d="M350 960 C540 1100 630 1090 740 1055"/>
+  <path class="line" marker-start="url(#diamond)" d="M350 875 C650 760 920 765 1080 895"/>
+  <path class="line" marker-start="url(#diamond)" d="M680 895 C790 790 980 790 1080 895"/>
+  <path class="line" marker-start="url(#diamond)" d="M555 961 L555 1005"/>
+  <path class="line" marker-start="url(#diamond)" d="M875 961 L875 1005"/>
+  <path class="line" marker-start="url(#diamond)" d="M1205 961 L1205 1005"/>
+
+  <!-- State machine -->
+  <g transform="translate(1400 835)">
+    <rect class="note" x="0" y="0" width="320" height="360"/>
+    <rect class="stateHead" x="0" y="0" width="320" height="40"/>
+    <text class="className" x="160" y="26" text-anchor="middle">Firmware State Diagram</text>
+
+    <circle cx="42" cy="82" r="9" fill="#172033"/>
+    <rect class="state" x="90" y="60" width="130" height="44"/>
+    <text class="stateText" x="155" y="88" text-anchor="middle">SCAN</text>
+
+    <rect class="state" x="90" y="130" width="130" height="44"/>
+    <text class="stateText" x="155" y="158" text-anchor="middle">DETECT</text>
+
+    <rect class="state" x="90" y="200" width="130" height="44"/>
+    <text class="stateText" x="155" y="228" text-anchor="middle">DEPLOY</text>
+
+    <rect class="state" x="90" y="270" width="130" height="44"/>
+    <text class="stateText" x="155" y="298" text-anchor="middle">LOG</text>
+
+    <rect class="state" x="232" y="200" width="76" height="44"/>
+    <text class="stateText" x="270" y="228" text-anchor="middle">FAIL</text>
+
+    <path class="line" marker-end="url(#arrow)" d="M51 82 L90 82"/>
+    <path class="line" marker-end="url(#arrow)" d="M155 104 L155 130"/>
+    <path class="line" marker-end="url(#arrow)" d="M155 174 L155 200"/>
+    <path class="line" marker-end="url(#arrow)" d="M155 244 L155 270"/>
+    <path class="line" marker-end="url(#arrow)" d="M90 292 C40 250 40 125 90 82"/>
+    <path class="dash" marker-end="url(#arrow)" d="M220 222 L232 222"/>
+    <text class="label" x="174" y="122">classify</text>
+    <text class="label" x="174" y="192">decide</text>
+    <text class="label" x="174" y="262">log</text>
+    <text class="label" x="27" y="191" transform="rotate(-90 27 191)">next cycle</text>
+  </g>
+
+  <text class="small" x="50" y="1278">Legend: hollow diamond = object ownership/composition, dashed arrow = data type dependency, rounded states = firmware workflow states.</text>
+</svg>
