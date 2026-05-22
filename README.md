@@ -138,6 +138,11 @@ Contains the C implementations for hardware abstraction and motor control. These
 ### Simulation Environment
 A custom sandbox designed to validate navigation and restoration algorithms in a controlled virtual environment before physical deployment.
 
+## UML Diagram
+
+<img width="1800" height="1320" alt="image" src="https://github.com/user-attachments/assets/c587659c-41da-4a05-8e11-fe44ce99b959" />
+
+
 ## Repository Structure
 ```text
 ├── src/
